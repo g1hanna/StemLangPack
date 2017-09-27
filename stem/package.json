@@ -1,0 +1,26 @@
+{
+    "name": "stem",
+    "displayName": "Stem Language Support",
+    "description": "Language support for the Stem language",
+    "version": "0.0.1",
+    "publisher": "hanna80",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "stem",
+            "aliases": ["Stem", "stem"],
+            "extensions": [".stem"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "stem",
+            "scopeName": "source.stem",
+            "path": "./syntaxes/stem.tmLanguage.json"
+        }]
+    }
+}

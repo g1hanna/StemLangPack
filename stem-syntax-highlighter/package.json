@@ -1,0 +1,22 @@
+{
+    "name": "stem-syntax-highlighter",
+    "displayName": "Stem Syntax Highlighter",
+    "description": "Syntax highlighter for Stem language",
+    "version": "0.0.1",
+    "publisher": "hanna80",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Lush",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Lush-color-theme.json"
+            }
+        ]
+    }
+}
