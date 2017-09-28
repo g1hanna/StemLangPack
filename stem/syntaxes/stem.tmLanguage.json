@@ -7,13 +7,19 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#blocks"
+		},
+		{
+			"include": "#comments"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.stem",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(if|else|while|for|return)\\b"
 			}]
 		},
 		"strings": {
@@ -24,6 +30,20 @@
 				{
 					"name": "constant.character.escape.stem",
 					"match": "\\\\."
+				}
+			]
+		},
+		"blocks": {
+			"name": "meta.block.stem",
+			"begin": "{",
+			"end": "}"
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.stem",
+					"begin": "\\-",
+					"end": "-\\"
 				}
 			]
 		}
