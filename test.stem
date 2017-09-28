@@ -1,0 +1,10 @@
+\- I am a multi-line
+    comment. -\
+
+\\ I am a single-line comment
+
+for myCollection[$i=.] {
+    if (i == 0) {
+        return true;
+    }
+};

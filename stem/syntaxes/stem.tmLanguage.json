@@ -19,7 +19,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.stem",
-				"match": "\\b(if|else|while|for|return)\\b"
+				"match": "\\b(if|else|while|for|return|fork)\\b"
 			}]
 		},
 		"strings": {
@@ -34,16 +34,47 @@
 			]
 		},
 		"blocks": {
-			"name": "meta.block.stem",
-			"begin": "{",
-			"end": "}"
+			"patterns": [{
+				"name": "meta.block.stem",
+				"begin": "{",
+				"beginCaptures": {
+					"1": {
+						"name": "punctuation.section.block.begin.curly.stem"
+					}
+				},
+				"end": "}",
+				"endCaptures": {
+					"1": {
+						"name": "punctuation.section.block.end.curly.stem"
+					}
+				},
+				"patterns": [
+					{
+						"include": "#stem"
+					}
+				]
+			}]
 		},
 		"comments": {
 			"patterns": [
 				{
-					"name": "comment.stem",
-					"begin": "\\-",
-					"end": "-\\"
+					"name": "comment.line.stem",
+					"match": "\\\\\\\\.*$"
+				},
+				{
+					"name": "comment.block.stem",
+					"begin": "\\\\-",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.section.comment.multi.begin.commentchar.stem"
+						}
+					},
+					"end": "-\\\\",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.section.comment.multi.end.commentchar.stem"
+						}
+					}
 				}
 			]
 		}
