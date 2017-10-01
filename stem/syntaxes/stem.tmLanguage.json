@@ -4,12 +4,27 @@
 	"patterns": [
 		{
 			"include": "#keywords"
+		},
+		{
+			"include": "#numbers"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"name": "keyword.control.stem",
 			"match": "\\b(if|else|do|switch|for|while|break|jump|next|redo|return|raise|yield|try|trap|finally|fork|join|exit)\\b"
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.float.stem",
+					"match": "\\b([0-9]+\\.[0-9]+)\\b"
+				},
+				{
+					"name": "constant.numeric.int.stem",
+					"match": "\\b([0-9]+)\\b"
+				}
+			]
 		}
 	},
 	"scopeName": "source.stem"
