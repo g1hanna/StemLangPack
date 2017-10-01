@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Version 0.1.0
 
 \(10/1/2017\)\:
+* Function Declaration and Parameters Added (```entity.declaration.function.stem```)
 * Variable Declaration Added (```entity.declaration.variable.stem```)
 * Language Constants Added (```constant.language.stem```)
 * Float and Int number constants added (```constant.numeric.float.stem```, ```constant.numeric.int.stem```)

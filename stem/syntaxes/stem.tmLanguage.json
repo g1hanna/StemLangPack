@@ -39,6 +39,44 @@
 		"declarations": {
 			"patterns": [
 				{
+					"name": "entity.declaration.function.stem",
+					"begin": "(\\$|\\?|\\%)([a-zA-Z_][a-zA-Z0-9_]*)\\(",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.modifier.stem"
+						},
+						"2": {
+							"name": "entity.name.function.stem"
+						},
+						"4": {
+							"name": "punctuation.definition.parameters.begin.round.stem"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.parameters.end.round.stem"
+						}
+					},
+					"patterns": [
+						{
+							"name": "keyword.operator.parameter.separation.comma.stem",
+							"match": ","	
+						},
+						{
+							"include": "#declarations"
+						}
+					],
+					"captures": {
+						"1": {
+							"name": "storage.modifier.stem"
+						},
+						"2": {
+							"name": "variable.other.stem"
+						}
+					}
+				},
+				{
 					"name": "entity.declaration.variable.stem",
 					"match": "(\\$|\\?|\\%)([a-zA-Z_][a-zA-Z0-9_]*)",
 					"captures": {
