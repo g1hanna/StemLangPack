@@ -7,6 +7,9 @@
 		},
 		{
 			"include": "#numbers"
+		},
+		{
+			"include": "#constants"
 		}
 	],
 	"repository": {
@@ -25,6 +28,10 @@
 					"match": "\\b([0-9]+)\\b"
 				}
 			]
+		},
+		"constants": {
+			"name": "constant.language.stem",
+			"match": "\\b(true|false|null)\\b"
 		}
 	},
 	"scopeName": "source.stem"
