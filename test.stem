@@ -1,10 +1,2 @@
-\- I am a multi-line
-    comment. -\
+if 0.2
 
-\\ I am a single-line comment
-
-for myCollection[$i=.] {
-    if (i == null) {
-        return true;
-    }
-};

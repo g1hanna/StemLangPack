@@ -3,96 +3,10 @@
 	"name": "Stem",
 	"patterns": [
 		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#blocks"
-		},
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#constants"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.stem",
-				"match": "\\b(if|else|while|for|return|fork)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.stem",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.stem",
-					"match": "\\\\."
-				}
-			]
-		},
-		"blocks": {
-			"patterns": [{
-				"name": "meta.block.stem",
-				"begin": "{",
-				"beginCaptures": {
-					"1": {
-						"name": "punctuation.section.block.begin.curly.stem"
-					}
-				},
-				"end": "}",
-				"endCaptures": {
-					"1": {
-						"name": "punctuation.section.block.end.curly.stem"
-					}
-				},
-				"patterns": [
-					{
-						"include": "#stem"
-					}
-				]
-			}]
-		},
-		"comments": {
-			"patterns": [
-				{
-					"name": "comment.line.stem",
-					"match": "\\\\\\\\.*$"
-				},
-				{
-					"name": "comment.block.stem",
-					"begin": "\\\\-",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.section.comment.multi.begin.commentchar.stem"
-						}
-					},
-					"end": "-\\\\",
-					"endCaptures": {
-						"1": {
-							"name": "punctuation.section.comment.multi.end.commentchar.stem"
-						}
-					}
-				}
-			]
-		},
-		"constants": {
-			"patterns": [
-				{
-					"name": "constant.numeric",
-					"match": "\\b([0-9]+\\.[0-9]+|[0-9]+)\\b"
-				},
-				{
-					"name": "constant.language",
-					"match": "\\b(true|false|null|\\.)\\b"
-				}
-			]
-		}
+
 	},
 	"scopeName": "source.stem"
 }
