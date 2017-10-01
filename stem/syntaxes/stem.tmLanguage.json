@@ -16,11 +16,46 @@
 		},
 		{
 			"include": "#declarations"
+		},
+		{
+			"include": "#support"
 		}
 	],
 	"repository": {
 		"comments": {
 			"patterns": [
+				{
+					"name": "comment.block.documentation.stem",
+					"begin": "\\\\\\\\-",
+					"end": "-\\\\\\\\",
+					"patterns": [
+						{
+							"name": "string.quoted.other.macro.stem",
+							"begin": "\\`",
+							"end": "\\`",
+							"patterns": [
+								{
+									"include": "source.stem"
+								}
+							]
+						},
+						{
+							"name": "meta.comment.documentation.param.stem",
+							"match": "(@param)(\\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\\s+)",
+							"captures": {
+								"1": {
+									"name": "entity.other.attribute-name.documentation.param.stem"
+								},
+								"3": {
+									"name": "variable.other.stem"
+								},
+								"5": {
+									"name": "meta.definition.section.comment.begin.stem"
+								}
+							}
+						}
+					]
+				},
 				{
 					"name": "comment.line.character.stem",
 					"match": "\\\\\\\\.*$"
@@ -104,6 +139,14 @@
 							"name": "variable.other.stem"
 						}
 					}
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"name": "support.class.stem",
+					"match": "\\b(Console|System|IO|Math|Graphics|OpenGL)\\b"
 				}
 			]
 		}

@@ -1,0 +1,4 @@
+\\-
+	@param message A message to be displayed on the `Console`.
+-\\
+%myFunc($message) = { Console.println(message); return; };

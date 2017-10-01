@@ -14,7 +14,7 @@
         "languages": [{
             "id": "stem",
             "aliases": ["Stem", "stem"],
-            "extensions": [".stem"],
+            "extensions": [".stm, .stems"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
