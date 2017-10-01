@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Version 0.1.0
 
-\(10/1/2017\)\: Clean-slate start
+\(10/1/2017\)\:
+* Keywords Added (```keyword.control.stem```)
+* Clean-slate start
 
 - Initial release

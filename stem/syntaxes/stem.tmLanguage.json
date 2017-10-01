@@ -3,10 +3,14 @@
 	"name": "Stem",
 	"patterns": [
 		{
+			"include": "#keywords"
 		}
 	],
 	"repository": {
-
+		"keywords": {
+			"name": "keyword.control.stem",
+			"match": "\\b(if|else|do|switch|for|while|break|jump|next|redo|return|raise|yield|try|trap|finally|fork|join|exit)\\b"
+		}
 	},
 	"scopeName": "source.stem"
 }
