@@ -10,6 +10,9 @@
 		},
 		{
 			"include": "#constants"
+		},
+		{
+			"include": "#declarations"
 		}
 	],
 	"repository": {
@@ -32,6 +35,22 @@
 		"constants": {
 			"name": "constant.language.stem",
 			"match": "\\b(true|false|null)\\b"
+		},
+		"declarations": {
+			"patterns": [
+				{
+					"name": "entity.declaration.variable.stem",
+					"match": "(\\$|\\?|\\%)([a-zA-Z_][a-zA-Z0-9_]*)",
+					"captures": {
+						"1": {
+							"name": "storage.modifier.stem"
+						},
+						"2": {
+							"name": "variable.other.stem"
+						}
+					}
+				}
+			]
 		}
 	},
 	"scopeName": "source.stem"
