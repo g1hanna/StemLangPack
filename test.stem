@@ -1,3 +1,8 @@
 if 0.2 null
 
-%myFunc($var);
+%myFunc($var)
+
+\\ This is a line comment
+
+\- This is a
+	block comment -\

@@ -3,6 +3,9 @@
 	"name": "Stem",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
 			"include": "#keywords"
 		},
 		{
@@ -16,6 +19,20 @@
 		}
 	],
 	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.character.stem",
+					"match": "\\\\\\\\.*$"
+				},
+				{
+					"name": "comment.block.stem",
+					"begin": "\\\\-",
+					"end": "-\\\\",
+					"patterns": []
+				}
+			]
+		},
 		"keywords": {
 			"name": "keyword.control.stem",
 			"match": "\\b(if|else|do|switch|for|while|break|jump|next|redo|return|raise|yield|try|trap|finally|fork|join|exit)\\b"
