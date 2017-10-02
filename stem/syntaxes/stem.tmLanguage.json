@@ -6,16 +6,34 @@
 			"include": "#comments"
 		},
 		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
-			"include": "#constants"
+			"include": "#labels"
 		},
 		{
 			"include": "#declarations"
+		},
+		{
+			"include": "#data"
+		},
+		{
+			"include": "#blocks"
+		},
+		{
+			"include": "#infix"
+		},
+		{
+			"include": "#expressions"
+		},
+		{
+			"include": "#access"
+		},
+		{
+			"include": "#separators"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#keywords"
 		},
 		{
 			"include": "#support"
@@ -30,6 +48,10 @@
 					"end": "-\\\\\\\\",
 					"patterns": [
 						{
+							"name": "comment.block.documentation.escape.stem",
+							"match": "\\\\[`@\\\\]"
+						},
+						{
 							"name": "string.quoted.other.macro.stem",
 							"begin": "\\`",
 							"end": "\\`",
@@ -40,6 +62,15 @@
 							]
 						},
 						{
+							"name": "meta.comment.documentation.info.stem",
+							"match": "(@info)(\\s+)",
+							"captures": {
+								"1": {
+									"name": "entity.other.attribute-name.documentation.return.stem"
+								}
+							}
+						},
+						{
 							"name": "meta.comment.documentation.param.stem",
 							"match": "(@param)(\\s+)([a-zA-Z_][a-zA-Z0-9_]*)(\\s+)",
 							"captures": {
@@ -48,11 +79,40 @@
 								},
 								"3": {
 									"name": "variable.other.stem"
-								},
-								"5": {
-									"name": "meta.definition.section.comment.begin.stem"
 								}
 							}
+						},
+						{
+							"name": "meta.comment.documentation.return.stem",
+							"match": "(@return)(\\s+)",
+							"captures": {
+								"1": {
+									"name": "entity.other.attribute-name.documentation.return.stem"
+								}
+							}
+						},
+						{
+							"name": "meta.comment.documentation.raise.stem",
+							"begin": "(@raise)(\\s+)",
+							"beginCaptures": {
+								"1": {
+									"name": "entity.other.attribute-name.documentation.param.stem"
+								}
+							},
+							"end": "(\\s+|-\\\\\\\\)",
+							"patterns": [
+								{
+									"name": "keyword.operator.member.stem",
+									"match": "\\."
+								},
+								{
+									"include": "#support"
+								},
+								{
+									"name": "variable.other.stem",
+									"match": "([a-zA-Z_][a-zA-Z0-9_]*)"
+								}
+							]
 						}
 					]
 				},
@@ -88,6 +148,233 @@
 			"name": "constant.language.stem",
 			"match": "\\b(true|false|null)\\b"
 		},
+		"lang_variables": {
+			"name": "variable.language.stem",
+			"match": "\\b(this|child|base)\\b"
+		},
+		"wildcards": {
+			"name": "variable.language.wildcard.stem",
+			"match": "(?<![a-zA-Z0-9_\\)\\}\\]`'\"])(\\.|\\*|%)(?!([a-zA-Z_][a-zA-Z0-9_]*))"
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.other.macro.stem",
+					"begin": "`",
+					"end": "`",
+					"patterns": [
+						{
+							"name": "constant.character.escape.macro.stem",
+							"match": "\\\\`"
+						},
+						{
+							"include": "source.stem"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.stem",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.stem",
+							"match": "\\\\[abefnprtv\"']"
+						},
+						{
+							"name": "invalid.illegal.invalid_escape_sequence.stem",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.stem",
+					"begin": "'",
+					"end": "'",
+					"patterns": []
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.other.sizeof.stem",
+					"match": "\\bsizeof\\b"
+				},
+				{
+					"name": "keyword.operator.truth.stem",
+					"match": "\\?"
+				},
+				{
+					"name": "keyword.operator.assignment.arithmetic.stem",
+					"match": "(\\+=|-=|\\*\\*=|\\*=|//=|/=)"
+				},
+				{
+					"name": "keyword.operator.assignment.stem",
+					"match": "="
+				},
+				{
+					"name": "keyword.operator.logical.stem",
+					"match": "(&&|!|\\|\\|)"
+				},
+				{
+					"name": "keyword.operator.union.stem",
+					"match": "\\|"
+				},
+				{
+					"name": "keyword.operator.intersect.stem",
+					"match": "&"
+				},
+				{
+					"name": "keyword.operator.except.stem",
+					"match": "\\^"
+				},
+				{
+					"name": "keyword.operator.arithmetic.stem",
+					"match": "(\\+|-|\\*\\*|\\*|//|/)"
+				}
+			]
+		},
+		"infix": {
+			"patterns": [
+				{
+					"name": "meta.infix.stem",
+					"begin": "\\(",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.infix.begin.round.stem"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.infix.end.round.stem"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#comma_operator"
+						},
+						{
+							"include": "#operators"
+						},
+						{
+							"include": "#expressions"
+						},
+						{
+							"name": "invalid.illegal.improper_semicolon",
+							"match": ";"
+						}
+					]
+				}
+			]
+		},
+		"arrays": {
+			"patterns": [
+				{
+					"name": "meta.array.stem",
+					"begin": "\\[",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.array.begin.square.stem"
+						}
+					},
+					"end": "\\]",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.array.end.square.stem"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#comma_operator"
+						},
+						{
+							"include": "#operators"
+						},
+						{
+							"include": "#expressions"
+						},
+						{
+							"name": "invalid.illegal.improper_semicolon",
+							"match": ";"
+						}
+					]
+				}
+			]
+		},
+		"data": {
+			"patterns": [
+				{
+					"name": "meta.block.data.stem",
+					"begin": "(new)(\\s*)(\\{)",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.stem"
+						},
+						"3": {
+							"name": "punctuation.definition.section.data.begin.curly.stem"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.data.end.curly.stem"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.stem"
+						}
+					]
+				}
+			]
+		},
+		"blocks": {
+			"patterns": [
+				{
+					"name": "meta.block.stem",
+					"begin": "\\{",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.block.begin.curly.stem"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.section.block.end.curly.stem"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.stem"
+						}
+					]
+				}
+			]
+		},
+		"labels": {
+			"name": "meta.label.stem",
+			"match": "(@)([a-zA-Z_][a-zA-Z0-9_]*)(:)",
+			"captures": {
+				"1": {
+					"name": "storage.modifier.type"
+				},
+				"2": {
+					"name": "entity.name.section.label.stem"
+				},
+				"3": {
+					"name": "punctuation.definition.single.label.colon.stem"
+				}
+			}
+		},
 		"declarations": {
 			"patterns": [
 				{
@@ -112,21 +399,18 @@
 					},
 					"patterns": [
 						{
-							"name": "keyword.operator.parameter.separation.comma.stem",
-							"match": ","	
+							"include": "#comments"
+						},
+						{
+							"include": "#comma_operator"	
 						},
 						{
 							"include": "#declarations"
-						}
-					],
-					"captures": {
-						"1": {
-							"name": "storage.modifier.stem"
 						},
-						"2": {
-							"name": "variable.other.stem"
+						{
+							"include": "#wildcards"
 						}
-					}
+					]
 				},
 				{
 					"name": "entity.declaration.variable.stem",
@@ -142,11 +426,131 @@
 				}
 			]
 		},
+		"comma_operator": {
+			"name": "keyword.operator.separator.comma.stem",
+			"match": ","
+		},
+		"semicolon": {
+			"name": "keyword.operator.separator.semicolon.stem",
+			"match": ";"
+		},
+		"colon_operator": {
+			"name": "keyword.operator.separator.colon.stem",
+			"match": ":"
+		},
+		"separators": {
+			"patterns": [
+				{
+					"include": "#semicolon"
+				},
+				{
+					"include": "#comma_operator"
+				},
+				{
+					"include": "#colon_operator"
+				}
+			]
+		},
+		"access": {
+			"patterns": [
+				{
+					"begin": "(->|\\.)(\\s*)([a-zA-Z_][a-zA-Z0-9_]*)(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.operator.access.stem"
+						},
+						"3": {
+							"name": "entity.name.function.stem"
+						},
+						"5": {
+							"name": "punctuation.definition.arguments.begin.stem"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.arguments.end.stem"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comma_operator"
+						},
+						{
+							"include": "#declarations"
+						},
+						{
+							"include": "#expressions"
+						}
+					]
+				},
+				{
+					"match": "(->|\\.)(\\s*)([a-zA-Z_][a-zA-Z0-9_]*)",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.access.stem"
+						},
+						"3": {
+							"name": "variable.other.stem"
+						}
+					}
+				}
+			]
+		},
+		"storage_types": {
+			"name": "storage.type.stem",
+			"match": "\\b(value|ref|int|bool|float|string|macro|array|func|guide|bundle)\\b"
+		},
 		"support": {
 			"patterns": [
 				{
 					"name": "support.class.stem",
-					"match": "\\b(Console|System|IO|Math|Graphics|OpenGL)\\b"
+					"match": "\\b(Console|System|IO|Math|Graphics|Window|Threading)\\b"
+				},
+				{
+					"name": "support.class.warning.stem",
+					"match": "\\b(Warning|UndefinedVariableWarn|NeverExecutedWarn|TrapHeiarchyWarn|OrphanedThreadWarn)\\b"
+				},
+				{
+					"name": "support.class.exception.stem",
+					"match": "\\b(Error|NotImplementedErr|RequisiteNotImplementedErr|OutParamUnsetErr|NullRefErr|UndefinedRefErr|SystemErr|StackOverflowErr|SyntaxErr|CastErr|DivideByZeroErr|VagueWildcardErr|InvalidIndexErr)\\b"
+				}
+			]
+		},
+		"expressions": {
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#data"
+				},
+				{
+					"include": "#blocks"
+				},
+				{
+					"include": "#arrays"
+				},
+				{
+					"include": "#infix"
+				},
+				{
+					"include": "#storage_types"
+				},
+				{
+					"include": "#support"
+				},
+				{
+					"include": "#lang_variables"
+				},
+				{
+					"include": "#wildcards"
 				}
 			]
 		}
