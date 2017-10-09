@@ -22,5 +22,6 @@
             "scopeName": "source.stem",
             "path": "./syntaxes/stem.tmLanguage.json"
         }]
-    }
+    },
+    "icon": "icon.ico"
 }

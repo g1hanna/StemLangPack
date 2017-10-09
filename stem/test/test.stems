@@ -1,11 +1,5 @@
-\\-
-	@info Prints a `message` to the console.
-	@param message A message to be displayed on the `Console`.
-	@return Returns nothing.
-	@raise NotImplementedErr Function not yet defined.
-	@raise Error Occurs if unhandled error is raised.
--\\
-%myFunc($message, *) = { Console.println(message); return; };
-
-@do_something:
-do null;
+$Point2D = bundle(){
+	%new($x, $y) = {
+		
+	};
+};
